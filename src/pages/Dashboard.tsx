@@ -140,14 +140,6 @@ export default function Dashboard() {
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <a href="#">
-                    <Calendar />
-                    <span>Calendário</span>
-                  </a>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <a href="#">
                     <Home />
                     <span>Fazenda</span>
                   </a>
