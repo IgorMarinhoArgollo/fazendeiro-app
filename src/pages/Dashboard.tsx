@@ -21,7 +21,6 @@ import {
 } from "@/components/ui/sidebar"
 import { SidebarProvider } from "@/components/ui/sidebar"
 
-// Dados de exemplo para o estoque
 const initialInventory = [
   {
     id: 1,
@@ -30,7 +29,7 @@ const initialInventory = [
     unit: "kg",
     batch: "RAC-2023-001",
     location: "Armazém A",
-    expiryDate: "2024-12-15",
+    expiryDate: "2025-06-30",
   },
   {
     id: 2,
@@ -48,7 +47,7 @@ const initialInventory = [
     unit: "kg",
     batch: "SEM-2023-012",
     location: "Sala de sementes",
-    expiryDate: "2024-08-10",
+    expiryDate: "2027-08-10",
   },
   {
     id: 4,
