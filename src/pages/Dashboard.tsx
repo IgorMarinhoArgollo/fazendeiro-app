@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Home, LogOut, Package, Plus, Search, Settings, Tractor, User } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -137,30 +138,30 @@ export default function Dashboard() {
                   </a>
                 </SidebarMenuButton>
               </SidebarMenuItem>
-              <SidebarMenuItem>
+              {/* <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <a href="#">
                     <Home />
                     <span>Fazenda</span>
                   </a>
                 </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
+              </SidebarMenuItem> */}
+              {/* <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <a href="#">
                     <User />
                     <span>Usuários</span>
                   </a>
                 </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
+              </SidebarMenuItem> */}
+              {/* <SidebarMenuItem className="cursor-not-allowed text-gray-600">
                 <SidebarMenuButton asChild>
                   <a href="#">
                     <Settings />
                     <span>Configurações</span>
                   </a>
                 </SidebarMenuButton>
-              </SidebarMenuItem>
+              </SidebarMenuItem> */}
             </SidebarMenu>
           </SidebarContent>
           <SidebarFooter>

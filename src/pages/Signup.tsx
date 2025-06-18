@@ -50,12 +50,12 @@ export default function Signup() {
             </div>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">
-            <Button type="submit" className="w-full bg-green-600 hover:bg-green-700" disabled={isLoading}>
+            <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 mt-8" disabled={isLoading}>
               {isLoading ? "Cadastrando..." : "Cadastrar"}
             </Button>
             <div className="text-center text-sm">
               Já possui uma conta?{" "}
-              <a href="/login" className="text-green-600 hover:underline">
+              <a href="/" className="text-green-600 hover:underline">
                 Entrar
               </a>
             </div>
