@@ -1,8 +1,7 @@
 "use client"
 
 import { useState } from "react"
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Home, LogOut, Package, Plus, Search, Settings, Tractor, User } from "lucide-react"
+import { LogOut, Package, Plus, Search, Tractor } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
