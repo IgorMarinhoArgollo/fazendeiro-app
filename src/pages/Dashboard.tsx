@@ -47,6 +47,7 @@ export default function Dashboard() {
       item.batch?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.location?.toLowerCase().includes(searchTerm.toLowerCase()),
   )
+  
   // Buscar inventário da API ao montar o componente
   React.useEffect(() => {
     async function fetchInventory() {
