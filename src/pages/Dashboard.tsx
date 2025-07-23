@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
 import { useState } from "react"
@@ -19,74 +20,52 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { SidebarProvider } from "@/components/ui/sidebar"
+import React from "react"
 
-const initialInventory = [
-  {
-    id: 1,
-    name: "Ração para gado",
-    quantity: 500,
-    unit: "kg",
-    batch: "RAC-2023-001",
-    location: "Armazém A",
-    expiryDate: "2025-06-30",
-  },
-  {
-    id: 2,
-    name: "Fertilizante NPK",
-    quantity: 200,
-    unit: "kg",
-    batch: "FER-2023-045",
-    location: "Galpão B",
-    expiryDate: "2025-03-20",
-  },
-  {
-    id: 3,
-    name: "Sementes de milho",
-    quantity: 50,
-    unit: "kg",
-    batch: "SEM-2023-012",
-    location: "Sala de sementes",
-    expiryDate: "2027-08-10",
-  },
-  {
-    id: 4,
-    name: "Herbicida",
-    quantity: 100,
-    unit: "L",
-    batch: "HER-2023-078",
-    location: "Depósito de químicos",
-    expiryDate: "2024-05-30",
-  },
-  {
-    id: 5,
-    name: "Vacina para bovinos",
-    quantity: 30,
-    unit: "doses",
-    batch: "VAC-2023-123",
-    location: "Refrigerador",
-    expiryDate: "2024-02-28",
-  },
-]
+
+type InventoryItem = {
+  id: number
+  name: string
+  quantity: number
+  unit: string
+  batch: string
+  location: string
+  expiryDate: string
+}
 
 export default function Dashboard() {
-  const [inventory, setInventory] = useState(initialInventory)
+  const [inventory, setInventory] = useState<InventoryItem[]>([])
   const [searchTerm, setSearchTerm] = useState("")
   const [isAddModalOpen, setIsAddModalOpen] = useState(false)
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
-  const [selectedItem, setSelectedItem] = useState<typeof initialInventory[number] | null>(null)
+  const [selectedItem, setSelectedItem] = useState<InventoryItem | null>(null)
 
   // Filtra o inventário com base no termo de busca
   const filteredInventory = inventory.filter(
-    (item) =>
-      item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.batch.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.location.toLowerCase().includes(searchTerm.toLowerCase()),
+    (item: any) =>
+      item.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.batch?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.location?.toLowerCase().includes(searchTerm.toLowerCase()),
   )
+  // Buscar inventário da API ao montar o componente
+  React.useEffect(() => {
+    async function fetchInventory() {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/produto/listar`)
+        if (!response.ok) throw new Error("Erro ao buscar inventário")
+        const data = await response.json()
+        setInventory(data)
+      } catch (error) {
+        console.log(error);
+        setInventory([])
+      }
+    }
+    fetchInventory()
+  }, [])
 
   // Função para adicionar um novo item
   const handleAddItem = (newItem: { name: string; quantity: number; unit: string; batch: string; location: string; expiryDate: string }) => {
     setInventory([...inventory, { ...newItem, id: inventory.length + 1 }])
-    setIsAddModalOpen(false)
   }
 
   // Função para editar a quantidade de um item
@@ -97,7 +76,7 @@ export default function Dashboard() {
   }
 
   // Função para abrir o modal de edição
-  const openEditModal = (item: typeof initialInventory[number]) => {
+  const openEditModal = (item: InventoryItem) => {
     setSelectedItem(item)
     setIsEditModalOpen(true)
   }
@@ -166,7 +145,7 @@ export default function Dashboard() {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <a href="/login">
+                  <a href="/">
                     <LogOut />
                     <span>Sair</span>
                   </a>

@@ -12,16 +12,36 @@ import { Label } from "@/components/ui/label"
 export default function Home() {
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
+  const [email, setEmail] = useState("")
+  const [senha, setSenha] = useState("")
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
 
-    // Simulando um login
-    setTimeout(() => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/fazenda/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email,
+          senha
+        })
+      })
+
+      if (!response.ok) {
+        throw new Error("Erro ao fazer login")
+      }
+
       setIsLoading(false)
       navigate("/dashboard")
-    }, 1500)
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+      alert("Falha no login");
+    }
   }
 
   return (
@@ -38,11 +58,11 @@ export default function Home() {
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email do Usuário</Label>
-              <Input id="email" type="email" placeholder="seu@email.com" required />
+              <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} required />
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">Senha</Label>
-              <Input id="password" type="password" required />
+              <Input id="password" type="password" value={senha} onChange={e => setSenha(e.target.value)} required />
             </div>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">

@@ -39,16 +39,16 @@ export function AddItemModal({ isOpen, onClose, onAdd }: AddItemModalProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    const newItem = {
-      name,
-      quantity: Number(quantity),
-      unit,
-      batch,
-      location,
-      expiryDate: date ? format(date, "yyyy-MM-dd") : "",
+    const produto = {
+      nome: name,
+      quantidade: Number(quantity),
+      lote: batch,
+      local: location,
+      validade: date ? date.toISOString() : ""
     }
 
-    onAdd(newItem)
+    adicionarProduto(produto)
+    onAdd({ name, quantity: Number(quantity), unit, batch, location, expiryDate: date ? format(date, "yyyy-MM-dd") : "" })
     resetForm()
   }
 
@@ -59,6 +59,30 @@ export function AddItemModal({ isOpen, onClose, onAdd }: AddItemModalProps) {
     setBatch("")
     setLocation("")
     setDate(new Date())
+  }
+
+  async function adicionarProduto(produto: { nome: string; quantidade: number; lote: string; local: string; validade: string }) {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/produto/cadastrar/0`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(produto),
+      })
+
+      if (!response.ok) {
+        throw new Error("Erro ao adicionar produto")
+      }
+
+      // Se quiser tratar o retorno:
+      // const data = await response.json();
+
+      alert("Produto adicionado com sucesso!")
+    } catch (error) {
+      console.log(error);
+      alert("Falha ao adicionar produto")
+    }
   }
 
   return (
