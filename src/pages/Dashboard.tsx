@@ -116,30 +116,6 @@ export default function Dashboard() {
                   </a>
                 </SidebarMenuButton>
               </SidebarMenuItem>
-              {/* <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <a href="#">
-                    <Home />
-                    <span>Fazenda</span>
-                  </a>
-                </SidebarMenuButton>
-              </SidebarMenuItem> */}
-              {/* <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <a href="#">
-                    <User />
-                    <span>Usuários</span>
-                  </a>
-                </SidebarMenuButton>
-              </SidebarMenuItem> */}
-              {/* <SidebarMenuItem className="cursor-not-allowed text-gray-600">
-                <SidebarMenuButton asChild>
-                  <a href="#">
-                    <Settings />
-                    <span>Configurações</span>
-                  </a>
-                </SidebarMenuButton>
-              </SidebarMenuItem> */}
             </SidebarMenu>
           </SidebarContent>
           <SidebarFooter>
