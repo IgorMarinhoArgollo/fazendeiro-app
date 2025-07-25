@@ -75,9 +75,6 @@ export function AddItemModal({ isOpen, onClose, onAdd }: AddItemModalProps) {
         throw new Error("Erro ao adicionar produto")
       }
 
-      // Se quiser tratar o retorno:
-      // const data = await response.json();
-
       alert("Produto adicionado com sucesso!")
     } catch (error) {
       console.log(error);
